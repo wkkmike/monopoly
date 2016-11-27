@@ -6,6 +6,22 @@ import java.util.regex.Pattern;
 
 public class Game {
 
+    private static void findWinner(character[] a){
+        for(int i=1;i<a.length;i++){
+            int max = a[i].getCash();
+            int no= i;
+            for(int j=i;j<a.length;j++){
+                if(a[j].getCash() > max){
+                    max = a[j].getCash();
+                    no = j;
+                }
+            }
+            character temp = a[i];
+            a[i] = a[no];
+            a[no] = temp;
+        }
+    }
+
     public static void main(String[] args){
         System.out.println("This is a template for the Monopoly project.");
         character[] player = new character[5];
@@ -36,6 +52,11 @@ public class Game {
         System.out.println(gameMap.printMap());
         
         while(turn < 100){
+            int count = 0;
+            for(int i=1; i<=number;i++){
+                if(!player[i].isRetire()) count++;
+            }
+            if(count <= 1) break;
             System.out.println(turn + " turns" + "\n");
             for(int i=1; i <= number; i++){
                 if(player[i].isRetire()) continue;
@@ -72,6 +93,16 @@ public class Game {
                 }
             }
             turn++;
+        }
+        System.out.println("Game over");
+        findWinner(player);
+        int m = -1;
+        for(int i=1;i<=number;i++){
+            if(player[i].getCash() > m) {
+                System.out.print(player[i] + " WIN\n");
+                m = player[i].getCash();
+            }
+            else break;
         }
     }
 }

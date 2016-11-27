@@ -58,7 +58,7 @@ public class character {
     }
 
     void retire(Map a){
-        cash = 0;
+        cash = -1;
         state = -1;
         for(int i = 0; i < houseAmount; i++){
             a.getBlockList()[house[i]].dismissOwner(this);
