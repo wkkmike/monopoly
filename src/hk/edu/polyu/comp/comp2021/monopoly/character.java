@@ -61,7 +61,7 @@ public class character {
         cash = -1;
         state = -1;
         for(int i = 0; i < houseAmount; i++){
-            a.getBlockList()[house[i]].dismissOwner(this);
+            a.getBlockList()[house[i] - 1].dismissOwner(this);
         }
         System.out.println("You lose.");
     }
