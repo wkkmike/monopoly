@@ -99,7 +99,7 @@ public class Game {
         int m = -1;
         for(int i=1;i<=number;i++){
             if(player[i].getCash() > m) {
-                System.out.print(player[i] + " WIN\n");
+                System.out.print(player[i].toString() + " WIN\n");
                 m = player[i].getCash();
             }
             else break;
