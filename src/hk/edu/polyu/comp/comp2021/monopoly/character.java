@@ -13,7 +13,7 @@ public class character {
     int position;
     int[] house = new int[20];
     int houseAmount;
-    character(){
+    public character(){
         name="";
         cash=1500;
         int state=-1;
@@ -22,19 +22,19 @@ public class character {
         houseAmount = 0;
     }
 
-    String getName(){
+    public String getName(){
         return name;
     }
 
-    int getNo(){
+    public int getNo(){
         return no;
     }
 
-    int getPostion(){
+    public int getPostion(){
         return position;
     }
 
-    character(String name, int amount,int no){
+    public character(String name, int amount,int no){
         this.no=no;
         this.name=name;
         this.cash=amount;
@@ -44,20 +44,20 @@ public class character {
         houseAmount = 0;
     }
 
-    void buyHouse(Block p){
+    public void buyHouse(Block p){
         house[houseAmount] = p.getPosition();
         houseAmount++;
     }
 
-    int getCash(){
+    public int getCash(){
         return cash;
     }
 
-    boolean isRetire(){
+    public boolean isRetire(){
         return state == -1;
     }
 
-    void retire(Map a){
+    public void retire(Map a){
         cash = -1;
         state = -1;
         for(int i = 0; i < houseAmount; i++){
@@ -66,31 +66,31 @@ public class character {
         System.out.println("You lose.");
     }
 
-    void setCash(int money){
+    public void setCash(int money){
         if(cash + money >= 0) cash += money;
     }
 
-    int rollDice(){
+    public int rollDice(){
         Random random = new Random();
         int step = random.nextInt(6)%6+1;
         return step;
     }
 
-    boolean injail(){
+    public boolean injail(){
         return state==1;
     }
 
-    int decreaseJailRound(){
+    public int decreaseJailRound(){
         jail_round--;
         return jail_round;
     }
 
-    void outJail(){
+    public void outJail(){
         jail_round = 0;
         state = 0;
     }
 
-    void move(){
+    public void move(){
         if(this.injail()){
             System.out.println("You are in jail");
         }
@@ -106,7 +106,7 @@ public class character {
         }
     }
 
-    void go(int step){
+    public void go(int step){
         this.position=(this.position + step)%21;
     }
 
@@ -123,7 +123,6 @@ public class character {
             sb.append("State: In jail\n");
         else if(state == -1)
             sb.append("State: Retire\n");
-        else;
         sb.append("Position: " + position + "  " + a.getNameOfBlock(position)+ "\n");
         sb.append("Property: \n");
         for(int i = 0; i < houseAmount; i++){
@@ -132,7 +131,7 @@ public class character {
         return sb.toString();
     }
 
-    void goJail(){
+    public void goJail(){
         this.position = 6;
         this.state=1;
         this.jail_round=2;

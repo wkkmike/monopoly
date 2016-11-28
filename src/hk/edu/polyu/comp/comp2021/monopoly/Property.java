@@ -86,14 +86,6 @@ public class Property extends Block{
             this.owner = null;
     }
 
-    public void buyProperty(character p){
-        if(this.getOwner() != null){
-            System.out.println("This property is owned by others. You can not buy it.");
-            return;
-        }
-        this.owner = p;
-        System.out.println("You buy " + getName() + ".");
-    }
 
     public void printInfo(){
         System.out.print("You are in " + getName() + ".");
@@ -109,7 +101,7 @@ public class Property extends Block{
         StringBuilder sb = new StringBuilder();
         sb.append("Property\n");
         if(owner == null)
-            sb.append("Owner； No owner\n");
+            sb.append("Owner: No owner\n");
         else
             sb.append("Owner: " + owner.getName() + "\n");
         sb.append("Price: $" + getPrice() + "\n");
