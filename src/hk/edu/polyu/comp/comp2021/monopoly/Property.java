@@ -12,10 +12,10 @@ public class Property extends Block{
 
     /**
      * Creator
-     * @param price
-     * @param rent
-     * @param position
-     * @param name
+     * @param price price
+     * @param rent rent
+     * @param position position
+     * @param name name
      */
     public Property(int price, int rent, int position, String name){
         super(position, name);
@@ -29,8 +29,8 @@ public class Property extends Block{
      * property, he can choose to buy it for the written price or
      * do nothing. If a player lands on a property owned by
      * another player, he has to pay a rent
-     * @param p
-     * @param a
+     * @param p person lands on this block
+     * @param a map
      */
     @Override
     public void action(character p, Map a){
@@ -116,7 +116,7 @@ public class Property extends Block{
 
     /**
      * Dismiss the owner if the param is the owner of the property
-     * @param p
+     * @param p the owner of this property
      */
     @Override
     public void dismissOwner(character p){
@@ -140,7 +140,7 @@ public class Property extends Block{
 
     /**
      * Info of this property: name, owner, price, rent, position
-     * @return
+     * @return info
      */
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -159,7 +159,7 @@ public class Property extends Block{
      * Icon of this property
      * 0: no owner
      * 1-4: Own by character NO.1-4
-     * @return
+     * @return icon
      */
     @Override
     public String toIcon() {

@@ -6,8 +6,8 @@ package hk.edu.polyu.comp.comp2021.monopoly;
 public class Tax extends Block{
     /**
      * Creator
-     * @param position
-     * @param name
+     * @param position position
+     * @param name name
      */
     public Tax(int position, String name){
         super(position, name);
@@ -23,7 +23,7 @@ public class Tax extends Block{
 
     /**
      * info of this block
-     * @return
+     * @return info
      */
     public String toString(){
         return "Tax:\n" + "Charge character who lands on this block 10% of his money.\n";
@@ -32,8 +32,8 @@ public class Tax extends Block{
     /**
      * If a player lands on this square he pays 10% of
      * his money (rounded down to a multiple of 10) as tax
-     * @param p
-     * @param a
+     * @param p person who lands on this block
+     * @param a map
      */
     @Override
     public void action(character p, Map a){
@@ -45,7 +45,7 @@ public class Tax extends Block{
 
     /**
      * Icon of this property
-     * @return
+     * @return icon
      */
     @Override
     public String toIcon() {

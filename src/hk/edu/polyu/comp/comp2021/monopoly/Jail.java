@@ -6,10 +6,12 @@ import java.util.Scanner;
  * Created by michael on 2016/11/24.
  */
 public class Jail extends Block {
+
+    private int fine = 50;
     /**
      * Creator
-     * @param position
-     * @param name
+     * @param position positon
+     * @param name name
      */
     public Jail(int position, String name){
         super(position, name);
@@ -23,8 +25,8 @@ public class Jail extends Block {
      *rolls the dice on either of his next two turns. If the player does not throw doubles by his third turn he must
      *pay the HKD 50 fine. He then gets out of Jail and immediately moves forward the number of spaces shown
      *by his throw.
-     * @param p
-     * @param d
+     * @param p person who lands in this block
+     * @param d map
      */
     @Override
     public void action(character p, Map d){
@@ -32,7 +34,7 @@ public class Jail extends Block {
             printInfo();
         }
         else{
-            if(p.getCash() < 50){
+            if(p.getCash() < fine){
                 System.out.println("You don't have enough money to pay the fine.");
                 int a = p.rollDice();
                 int b = p.rollDice();
@@ -59,7 +61,7 @@ public class Jail extends Block {
                 while (sc.hasNextLine()) {
                     String s1 = sc.nextLine();
                     if (s1.equals("y") || s1.equals("Y")) {
-                        p.setCash(-50);
+                        p.setCash(-fine);
                         p.outJail();
                         System.out.println("You pay $50 fine. You leave jail. You have $" + p.getCash() + " now.");
                         break;
@@ -75,7 +77,7 @@ public class Jail extends Block {
                             int r = p.decreaseJailRound();
                             if(r < 0){
                                 System.out.println("Sorry this is the third turns, you must pay fine.");
-                                p.setCash(-50);
+                                p.setCash(-fine);
                                 p.outJail();
                                 System.out.println("You pay $50 fine. You leave jail. You have $" + p.getCash() + " now.");
                                 p.move();
@@ -101,7 +103,7 @@ public class Jail extends Block {
 
     /**
      * info about his block
-     * @return
+     * @return info
      */
     public String toString() {
         String r = "he is in Jail and cannot make a move. A player gets out of\n" +
@@ -115,7 +117,7 @@ public class Jail extends Block {
 
     /**
      * Icon of this block
-     * @return
+     * @return icon
      */
     @Override
     public String toIcon(){

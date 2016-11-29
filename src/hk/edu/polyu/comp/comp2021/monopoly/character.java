@@ -11,15 +11,17 @@ public class character {
     private int state;  //0: normal, -1: out of game, 1: in jail, 2: auto
     private int jail_round;
     private int position;
-    private int[] house = new int[20];
+    private int propertyAmount = 20;
+    private int[] house = new int[propertyAmount];
     private int houseAmount;
-
+    private int initMoney = 1500;
+    private int totalBlock = 21;
     /**
      * creator
      */
     public character(){
         name="";
-        cash=1500;
+        cash=initMoney;
         int state=-1;
         position=1;
         jail_round=0;
@@ -52,9 +54,9 @@ public class character {
 
     /**
      * Creator when user take the input.
-     * @param name
-     * @param amount
-     * @param no
+     * @param name name
+     * @param amount amount of money he have
+     * @param no sequence no
      */
     public character(String name, int amount,int no){
         this.no=no;
@@ -110,7 +112,7 @@ public class character {
      * Make the character retire.
      * reset position, cash and state.
      * Reset all his properties.
-     * @param a
+     * @param a map
      */
     public void retire(Map a){
         position = 0;
@@ -178,19 +180,19 @@ public class character {
         else{
             int step=rollDice();
             System.out.println("You Roll " + step + " point.");
-            if((position + step) >= 21){
-                cash += 1500;
+            if((position + step) >= totalBlock){
+                cash += initMoney;
                 step += 1;
                 System.out.println("You pass the GO block and get $1500. You have $" + cash + " now.");
             }
-            position = (position + step)%21;
+            position = (position + step) % totalBlock;
         }
     }
 
     /**
      * Get a string of the character infomation include, cash. state, name position and the property.
-     * @param a
-     * @return
+     * @param a map
+     * @return the info
      */
     public String toString(Map a){
         StringBuilder sb=new StringBuilder();

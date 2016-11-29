@@ -9,8 +9,8 @@ public class Block {
 
     /**
      * Creator
-     * @param position
-     * @param name
+     * @param position positon
+     * @param name name
      */
     public Block(int position, String name){
         this.position = position;
@@ -42,7 +42,7 @@ public class Block {
 
     /**
      * dismiss the owner of the block
-     * @param p
+     * @param p character of this block
      */
     public void dismissOwner(character p){
 
@@ -50,8 +50,8 @@ public class Block {
 
     /**
      * doing action of that block
-     * @param p
-     * @param a
+     * @param p character who conduct the action
+     * @param a Map
      */
     public void action(character p, Map a){
 

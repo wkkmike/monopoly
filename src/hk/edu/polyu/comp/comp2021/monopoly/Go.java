@@ -6,8 +6,8 @@ package hk.edu.polyu.comp.comp2021.monopoly;
 public class Go extends Block {
     /**
      * Creator
-     * @param position
-     * @param name
+     * @param position position
+     * @param name name
      */
     public Go(int position, String name){
         super(position, name);
@@ -23,8 +23,8 @@ public class Go extends Block {
 
     /**
      * Action when a character land in this block. No effect.
-     * @param p
-     * @param a
+     * @param p person who do action
+     * @param a map
      */
     @Override
     public void action(character p, Map a){
@@ -33,7 +33,7 @@ public class Go extends Block {
 
     /**
      * print the information of this block.
-     * @return
+     * @return the info
      */
     public String toString(){
         return "Go:\n" + "Give $1500 to everyone pass through this block.\n";
@@ -41,7 +41,7 @@ public class Go extends Block {
 
     /**
      * A string of the block icon
-     * @return
+     * @return icon
      */
     @Override
     public String toIcon(){

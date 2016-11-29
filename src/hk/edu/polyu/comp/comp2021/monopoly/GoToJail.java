@@ -6,8 +6,8 @@ package hk.edu.polyu.comp.comp2021.monopoly;
 public class GoToJail extends Block{
     /**
      * Creator
-     * @param position
-     * @param name
+     * @param position positon
+     * @param name name
      */
     public GoToJail(int position, String name){
         super(position, name);
@@ -15,8 +15,8 @@ public class GoToJail extends Block{
 
     /**
      * Sent the person land in this block to jail
-     * @param p
-     * @param a
+     * @param p person who do action
+     * @param a map
      */
     @Override
     public void action(character p, Map a){
@@ -34,7 +34,7 @@ public class GoToJail extends Block{
 
     /**
      * Info about this block
-     * @return
+     * @return info
      */
     public String toString(){
         return "GoToJail:\n" + "Send character land on this place to Jail.\n";
@@ -42,7 +42,7 @@ public class GoToJail extends Block{
 
     /**
      * Icon of this block
-     * @return
+     * @return icon
      */
     @Override
     public String toIcon(){

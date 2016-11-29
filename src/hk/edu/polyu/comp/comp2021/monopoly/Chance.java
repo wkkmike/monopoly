@@ -5,10 +5,12 @@ import java.util.Random;
  */
 public class Chance extends Block {
 
+    private int maxMoney = 200;
+    private int minMoney = -300;
     /**
      * Creator
-     * @param position
-     * @param name
+     * @param position position
+     * @param name name
      */
     public Chance(int position, String name){
         super(position, name);
@@ -20,7 +22,7 @@ public class Chance extends Block {
      */
     public int changeMoney(){
         Random rand = new Random();
-        int  n = rand.nextInt(51) - 30;
+        int  n = rand.nextInt((maxMoney - minMoney)/10 + 1) + minMoney/10;
         return n * 10;
     }
 
@@ -28,8 +30,8 @@ public class Chance extends Block {
      * Doing action when a person in the chance block.
      * He may get -300 to 200 dollar.
      * If he bankrupt, he will retire.
-     * @param p
-     * @param a
+     * @param p character who do this action
+     * @param a map
      */
     @Override
     public void action(character p, Map a){
@@ -62,7 +64,7 @@ public class Chance extends Block {
 
     /**
      * print the effect of this block
-     * @return
+     * @return the info
      */
     public String toString(){
         return "Chance: \n" + "Character lands on this block may get -300 to 200 money randomly.\n";
@@ -70,13 +72,13 @@ public class Chance extends Block {
 
     /**
      * get the icon of this block
-     * @return
+     * @return icon
      */
     @Override
     public String toIcon(){
         if(getPosition() == 9)
             return "?         ";
-        else if(getPosition() == 19)
+        else if(getPosition() == (10 + 9))
             return "?\n";
         else
             return "? ";

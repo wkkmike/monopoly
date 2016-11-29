@@ -6,11 +6,13 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * main class
+ */
 public class Game {
-
     /**
      * Rearrange the player array degressive by their cash.
-     * @param a
+     * @param a character list
      * @param num number of player
      */
     private static void findWinner(character[] a, int num){
@@ -32,9 +34,12 @@ public class Game {
     /**
      * Game control method.
      * Get the character name, and do action, until a person win or reach 100 turns.
-     * @param args
+     * @param args ??
      */
     public static void main(String[] args){
+        int halfSecond = 500;
+        int initMoney = 1500;
+
         System.out.println("This is a template for the Monopoly project.");
         character[] player = new character[5];
         Scanner sc = new Scanner(System.in);
@@ -54,7 +59,7 @@ public class Game {
         for(int i=1;i<=number;i++){
             System.out.println("Please input the name of Player " + i + ":");
             String s=sc.nextLine();
-            player[i]=new character(s, 1500, i);
+            player[i]=new character(s, initMoney, i);
 
             System.out.println("Your name is: " + player[i].getName());
             System.out.println("Your own $" + player[i].getCash() + "\n");
@@ -77,9 +82,9 @@ public class Game {
                 System.out.println("\n" + player[i].getName() + " turns.");
                 System.out.println("continue (c), report(r), auto(a), show all(s) and retire(t)?input c/r/a/t/s ended with return.");
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(halfSecond);
                 }
-                catch (InterruptedException e){
+                catch (InterruptedException ignored){
 
                 }
                 InputStream inc = System.in;

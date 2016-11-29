@@ -7,8 +7,8 @@ public class Parking extends  Block {
 
     /**
      * Creator
-     * @param position
-     * @param name
+     * @param position position
+     * @param name name
      */
     public Parking(int position, String name){
         super(position, name);
@@ -24,7 +24,7 @@ public class Parking extends  Block {
 
     /**
      * info about this block
-     * @return
+     * @return info
      */
     public String toString(){
         return "FreeParking:\n" + "This block has no effect";
@@ -33,8 +33,8 @@ public class Parking extends  Block {
     /**
      * Action when a character land in this block.
      * No effect.
-     * @param p
-     * @param a
+     * @param p person who lands on this property
+     * @param a map
      */
     @Override
     public void action(character p, Map a){
@@ -43,7 +43,7 @@ public class Parking extends  Block {
 
     /**
      * Icon of this block
-     * @return
+     * @return icon
      */
     @Override
     public String toIcon() {

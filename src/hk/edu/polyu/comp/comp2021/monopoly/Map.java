@@ -4,26 +4,32 @@ package hk.edu.polyu.comp.comp2021.monopoly;
  * Created by michael on 2016/11/24.
  */
 public class Map {
-    private Block Go1;
-    private Block Central2;
-    private Block WanChai3;
-    private Block Tax4;
-    private Block Stanley5;
-    private Block Jail6;
-    private Block ShekO7;
-    private Block MongKok8;
-    private Block Chance9;
-    private Block TsingYi10;
-    private Block Parking11;
-    private Block Shatin12;
-    private Block Chance13;
-    private Block TuenMun14;
-    private Block TaiPo15;
-    private Block GoToJail16;
-    private Block SaiKung17;
-    private Block YuenLong18;
-    private Block Chance19;
-    private Block TaiO20;
+    private int num15 = 15;
+    private int num16 = 16;
+    private int num17 = 17;
+    private int num18= 18;
+    private int num19 = 19;
+
+    private final Block Go1;
+    private final Block Central2;
+    private final Block WanChai3;
+    private final Block Tax4;
+    private final Block Stanley5;
+    private final Block Jail6;
+    private final Block ShekO7;
+    private final Block MongKok8;
+    private final Block Chance9;
+    private final Block TsingYi10;
+    private final Block Parking11;
+    private final Block Shatin12;
+    private final Block Chance13;
+    private final Block TuenMun14;
+    private final Block TaiPo15;
+    private final Block GoToJail16;
+    private final Block SaiKung17;
+    private final Block YuenLong18;
+    private final Block Chance19;
+    private final Block TaiO20;
     {
         Go1 = new Go(1,"Go");
         Central2 = new Property(800, 90, 2, "Central");
@@ -73,27 +79,21 @@ public class Map {
      */
     public String printMap(){
         StringBuilder sb=new StringBuilder();
-        for(int i=10; i<=15;i++){
+        for(int i=10; i<=num15;i++){
             sb.append(BlockList[i].toIcon());
         }
         sb.append(BlockList[9].toIcon());
-        sb.append(BlockList[16].toIcon());
+        sb.append(BlockList[num16].toIcon());
         sb.append(BlockList[8].toIcon());
-        sb.append(BlockList[17].toIcon());
+        sb.append(BlockList[num17].toIcon());
         sb.append(BlockList[7].toIcon());
-        sb.append(BlockList[18].toIcon());
+        sb.append(BlockList[num18].toIcon());
         sb.append(BlockList[6].toIcon());
-        sb.append(BlockList[19].toIcon());
+        sb.append(BlockList[num19].toIcon());
         for(int i=5; i>=0; i--){
             sb.append(BlockList[i].toIcon());
         }
         return sb.toString();
     }
 
-
-    public static void main(String[] args){
-        Map a = new Map();
-        System.out.println(a.BlockList[7].getName());
-        System.out.println(a.printMap());
-    }
 }
