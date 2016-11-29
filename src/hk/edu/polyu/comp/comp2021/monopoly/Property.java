@@ -9,7 +9,9 @@ public class Property extends Block{
     private int rent;
     private int price;
     private character owner  =  null;
-
+    private final int num11 = 11;//left-up corner
+    private final int num16 = 16;//right-up corner
+    private final int num21 = 21;//right-down corner
     /**
      * Creator
      * @param price price
@@ -170,20 +172,20 @@ public class Property extends Block{
             else
                 return owner.getNo() + " ";
         }
-        else if(getPosition() > 6 && getPosition() < 11){
+        else if(getPosition() > 6 && getPosition() < num11){
             if(owner == null){
                 return "0         ";
             }
             else
                 return owner.getNo() + "         ";
         }
-        else if(getPosition() > 11 & getPosition() < 16){
+        else if(getPosition() > num11 & getPosition() < num16){
             if(owner == null)
                 return "0 ";
             else
                 return owner.getNo() + " ";
         }
-        else if(getPosition() > 16 && getPosition() < 21){
+        else if(getPosition() > num16 && getPosition() < num21){
             if(owner == null)
                 return "0\n";
             else

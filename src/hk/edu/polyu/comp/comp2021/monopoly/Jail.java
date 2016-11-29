@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Jail extends Block {
 
-    private int fine = 50;
+    private final int fine = 50;
     /**
      * Creator
      * @param position positon

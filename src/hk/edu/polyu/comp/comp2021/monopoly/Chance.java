@@ -5,8 +5,8 @@ import java.util.Random;
  */
 public class Chance extends Block {
 
-    private int maxMoney = 200;
-    private int minMoney = -300;
+    private final int maxMoney = 200;
+    private final int minMoney = -300;
     /**
      * Creator
      * @param position position

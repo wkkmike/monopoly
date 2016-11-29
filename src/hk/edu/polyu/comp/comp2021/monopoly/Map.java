@@ -4,11 +4,11 @@ package hk.edu.polyu.comp.comp2021.monopoly;
  * Created by michael on 2016/11/24.
  */
 public class Map {
-    private int num15 = 15;
-    private int num16 = 16;
-    private int num17 = 17;
-    private int num18= 18;
-    private int num19 = 19;
+    private final int num15 = 15;//position 15
+    private final int num16 = 16;//positon16
+    private final int num17 = 17;//position17
+    private final int num18= 18;//position18
+    private final int num19 = 19;//position19
 
     private final Block Go1;
     private final Block Central2;

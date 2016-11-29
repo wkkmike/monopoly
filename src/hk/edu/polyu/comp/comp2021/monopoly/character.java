@@ -11,11 +11,11 @@ public class character {
     private int state;  //0: normal, -1: out of game, 1: in jail, 2: auto
     private int jail_round;
     private int position;
-    private int propertyAmount = 20;
+    private final int propertyAmount = 20;
     private int[] house = new int[propertyAmount];
     private int houseAmount;
-    private int initMoney = 1500;
-    private int totalBlock = 21;
+    private final int initMoney = 1500;
+    private final int totalBlock = 21;
     /**
      * creator
      */

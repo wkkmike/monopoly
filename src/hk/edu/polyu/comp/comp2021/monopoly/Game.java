@@ -37,8 +37,8 @@ public class Game {
      * @param args ??
      */
     public static void main(String[] args){
-        int halfSecond = 500;
-        int initMoney = 1500;
+        final int halfSecond = 500;
+        final int initMoney = 1500;
 
         System.out.println("This is a template for the Monopoly project.");
         character[] player = new character[5];
