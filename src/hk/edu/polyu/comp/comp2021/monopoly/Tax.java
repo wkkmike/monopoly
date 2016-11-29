@@ -4,6 +4,7 @@ package hk.edu.polyu.comp.comp2021.monopoly;
  * Created by michael on 2016/11/26.
  */
 public class Tax extends Block{
+    private final int incomeTax = 10;
     /**
      * Creator
      * @param position position
@@ -38,7 +39,7 @@ public class Tax extends Block{
     @Override
     public void action(character p, Map a){
         printInfo();
-        int tax = p.getCash() / 10;
+        int tax = p.getCash() / incomeTax;
         p.setCash(-tax);
         System.out.println("You are charged $" + tax + ". You have $" + p.getCash() + " now.");
     }
