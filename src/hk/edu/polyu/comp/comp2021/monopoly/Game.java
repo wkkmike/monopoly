@@ -1,5 +1,7 @@
 package hk.edu.polyu.comp.comp2021.monopoly;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,7 +52,9 @@ public class Game {
 
         int now;
         System.out.println(gameMap.printMap());
-        
+
+        String data;
+
         while(turn < 100){
             int count = 0;
             for(int i=1; i<=number;i++){
@@ -62,6 +66,20 @@ public class Game {
                 if(player[i].isRetire()) continue;
                 System.out.println("\n" + player[i].getName() + " turns.");
                 System.out.println("continue (c), report(r), auto(a), and retire(t)?input c/r/a/t ended with return.");
+                try {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException e){
+
+                }
+                InputStream inc = System.in;
+                if(player[i].isAuto()){
+                    if(player[i].rollDice() <= 3)
+                        data = "c\n" + "y\n";
+                    else
+                        data = "c\n" + "n\n";
+                    System.setIn(new ByteArrayInputStream(data.getBytes()));
+                }
                 Scanner sd = new Scanner(System.in);
                 while (sd.hasNextLine()){
                     String s1 = sd.nextLine();
@@ -77,16 +95,32 @@ public class Game {
                                 System.out.print(player[m].getName() + ": retire    No: " + player[m].getNo() + "\n");
                             else if(player[m].injail())
                                 System.out.print(player[m].getName() + " : in jail    No: " + player[m].getNo() + "\n");
+                            else if(player[m].isAuto())
+                                System.out.print(player[m].getName() + " : in Auto mode    No: " + player[m].getNo() + "\n");
                             else
                                 System.out.print(player[m].getName() + " : position" + player[m].getPostion() + "    No: " + player[m].getNo() + "\n");
                         }
                         System.out.println("continue (c), report(r), auto(a), and retire(t)?input c/r/a/t ended with return.");
                         continue;
                     }
-                    if(s1.equals("C") || s1.equals("c")){
+                    else if(s1.equals("A") || s1.equals("a")){
+                        System.out.println(player[i].getName() + " change to auto mode.");
+                        player[i].setAuto();
+                        if(player[i].rollDice() <= 3)
+                            data = "c\n" + "y\n";
+                        else
+                            data = "c\n" + "n\n";
+                        System.setIn(new ByteArrayInputStream(data.getBytes()));
+                        player[i].move();
+                        gameMap.getBlockList()[player[i].getPostion() - 1].action(player[i], gameMap);
+                        System.setIn(inc);
+                        break;
+                    }
+                    else if(s1.equals("C") || s1.equals("c")){
                         System.out.println(gameMap.printMap());
                         player[i].move();
                         gameMap.getBlockList()[player[i].getPostion() - 1].action(player[i], gameMap);
+                        System.setIn(inc);
                         break;
                     }
                     else  System.out.println("continue (c), report(r), auto(a), and retire(t)?input c/r/a/t ended with return.");

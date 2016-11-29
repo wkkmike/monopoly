@@ -49,6 +49,14 @@ public class character {
         houseAmount++;
     }
 
+    public void setAuto(){
+        state = 2;
+    }
+
+    public boolean isAuto(){
+        return state == 2;
+    }
+
     public int getCash(){
         return cash;
     }
