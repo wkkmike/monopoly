@@ -50,21 +50,27 @@ public class Map {
     private Block[] BlockList = new Block[]{Go1, Central2, WanChai3, Tax4, Stanley5, Jail6, ShekO7, MongKok8, Chance9, TsingYi10,
             Parking11, Shatin12, Chance13, TuenMun14, TaiPo15, GoToJail16, SaiKung17, YuenLong18, Chance19, TaiO20};
 
+    /**
+     * Get the block this map have.
+     * @return the blocklist
+     */
     public Block[] getBlockList(){
         return BlockList;
     }
 
+    /**
+     * Get the name of a block by it's position
+     * @param p the position of the block
+     * @return the name of the block
+     */
     public String getNameOfBlock(int p){
         return BlockList[p-1].getName();
     }
 
-    public String toString(){
-        String r;
-        return null;
-    }
-
-
-
+    /**
+     * get the map in command line
+     * @return a string stand for the map.
+     */
     public String printMap(){
         StringBuilder sb=new StringBuilder();
         for(int i=10; i<=15;i++){

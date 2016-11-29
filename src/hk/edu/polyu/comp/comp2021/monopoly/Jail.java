@@ -6,11 +6,27 @@ import java.util.Scanner;
  * Created by michael on 2016/11/24.
  */
 public class Jail extends Block {
-    int[] inJail = new int[4];
+    /**
+     * Creator
+     * @param position
+     * @param name
+     */
     public Jail(int position, String name){
         super(position, name);
     }
 
+    /**
+     * If a player lands on this square he is “Just Visiting”: the square has no effect. However,
+     *if the player got here by landing on “Go to Jail”, he is in Jail and cannot make a move. A player gets out of
+     *Jail by either throwing doubles1 on any of his next three turns (if he succeeds in doing this he immediately
+     *moves forward by the number of spaces shown by his doubles throw) or paying a fine of HKD 50 before he
+     *rolls the dice on either of his next two turns. If the player does not throw doubles by his third turn he must
+     *pay the HKD 50 fine. He then gets out of Jail and immediately moves forward the number of spaces shown
+     *by his throw.
+     * @param p
+     * @param d
+     */
+    @Override
     public void action(character p, Map d){
         if(!p.injail()){
             printInfo();
@@ -75,10 +91,18 @@ public class Jail extends Block {
         }
     }
 
+    /**
+     * info about this block
+     */
+    @Override
     public void printInfo(){
         System.out.println("You just pass by jail, no effect.");
     }
 
+    /**
+     * info about his block
+     * @return
+     */
     public String toString() {
         String r = "he is in Jail and cannot make a move. A player gets out of\n" +
                 "Jail by either throwing doubles1 on any of his next three turns (if he succeeds in doing this he immediately\n" +
@@ -88,6 +112,12 @@ public class Jail extends Block {
                 "by his throw.";
         return r;
     }
+
+    /**
+     * Icon of this block
+     * @return
+     */
+    @Override
     public String toIcon(){
         return "# ";
     }

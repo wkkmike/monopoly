@@ -10,12 +10,29 @@ public class Property extends Block{
     private int price;
     private character owner  =  null;
 
+    /**
+     * Creator
+     * @param price
+     * @param rent
+     * @param position
+     * @param name
+     */
     public Property(int price, int rent, int position, String name){
         super(position, name);
         this.rent = rent;
         this.price = price;
     }
 
+    /**
+     * contain the name and the price of the property and can be
+     * owned by players. If a player lands on an unowned
+     * property, he can choose to buy it for the written price or
+     * do nothing. If a player lands on a property owned by
+     * another player, he has to pay a rent
+     * @param p
+     * @param a
+     */
+    @Override
     public void action(character p, Map a){
         printInfo();
         if(getOwner() == null){
@@ -64,29 +81,53 @@ public class Property extends Block{
         }
     }
 
+    /**
+     * get the price of the property
+     * @return price of this property
+     */
     public int getPrice(){
         return price;
     }
 
+    /**
+     * Get the rent
+     * @return rent of this property
+     */
     public int getRent(){
         return rent;
     }
 
+    /**
+     * get the owner
+     * @return owner of the property
+     */
     public character getOwner(){
         return owner;
     }
 
+    /**
+     * Set the new owner of the property
+     * @param p the new owner
+     */
     public void setOwner(character p){
         this.owner = p;
         p.setCash(-price);
     }
 
+    /**
+     * Dismiss the owner if the param is the owner of the property
+     * @param p
+     */
+    @Override
     public void dismissOwner(character p){
         if(p == this.owner)
             this.owner = null;
     }
 
-
+    /**
+     * Info of this block, who owner the block
+     */
+    @Override
     public void printInfo(){
         System.out.print("You are in " + getName() + ".");
         if(this.owner == null){
@@ -97,6 +138,10 @@ public class Property extends Block{
         }
     }
 
+    /**
+     * Info of this property: name, owner, price, rent, position
+     * @return
+     */
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Property\n");
@@ -110,6 +155,12 @@ public class Property extends Block{
         return sb.toString();
     }
 
+    /**
+     * Icon of this property
+     * 0: no owner
+     * 1-4: Own by character NO.1-4
+     * @return
+     */
     @Override
     public String toIcon() {
         if(getPosition() > 0 && getPosition() < 6){

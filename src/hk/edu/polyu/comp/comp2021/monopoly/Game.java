@@ -8,6 +8,11 @@ import java.util.regex.Pattern;
 
 public class Game {
 
+    /**
+     * Rearrange the player array degressive by their cash.
+     * @param a
+     * @param num number of player
+     */
     private static void findWinner(character[] a, int num){
         for(int i=1;i<=num;i++){
             int max = a[i].getCash();
@@ -24,6 +29,11 @@ public class Game {
         }
     }
 
+    /**
+     * Game control method.
+     * Get the character name, and do action, until a person win or reach 100 turns.
+     * @param args
+     */
     public static void main(String[] args){
         System.out.println("This is a template for the Monopoly project.");
         character[] player = new character[5];
@@ -46,8 +56,8 @@ public class Game {
             String s=sc.nextLine();
             player[i]=new character(s, 1500, i);
 
-            System.out.println("Your name is: " + player[i].name);
-            System.out.println("Your own $" + player[i].cash + "\n");
+            System.out.println("Your name is: " + player[i].getName());
+            System.out.println("Your own $" + player[i].getCash() + "\n");
         }
 
         int now;
