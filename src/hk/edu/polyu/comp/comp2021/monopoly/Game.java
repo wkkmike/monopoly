@@ -162,7 +162,7 @@ public class Game {
         findWinner(player, number);
         int m = -1;
         for(int i=1;i<=number;i++){
-            if(player[i].getCash() > m) {
+            if(player[i].getCash() >= m) {
                 System.out.print(player[i].getName() + " WIN\n");
                 m = player[i].getCash();
             }
