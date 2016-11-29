@@ -66,6 +66,7 @@ public class character {
     }
 
     public void retire(Map a){
+        position = 0;
         cash = -1;
         state = -1;
         for(int i = 0; i < houseAmount; i++){

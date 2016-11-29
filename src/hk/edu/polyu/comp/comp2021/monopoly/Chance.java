@@ -17,6 +17,7 @@ public class Chance extends Block {
 
     public void action(character p, Map a){
         int n = changeMoney();
+        printInfo();
         if(n >= 0) {
             p.setCash(n);
             System.out.println("You win $" + n + ". You have $" + p.getCash() + " now.");

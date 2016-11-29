@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 public class Game {
 
-    private static void findWinner(character[] a){
-        for(int i=1;i<a.length;i++){
+    private static void findWinner(character[] a, int num){
+        for(int i=1;i<=num;i++){
             int max = a[i].getCash();
             int no= i;
-            for(int j=i;j<a.length;j++){
+            for(int j=i;j<=num;j++){
                 if(a[j].getCash() > max){
                     max = a[j].getCash();
                     no = j;
@@ -65,7 +65,7 @@ public class Game {
             for(int i=1; i <= number; i++){
                 if(player[i].isRetire()) continue;
                 System.out.println("\n" + player[i].getName() + " turns.");
-                System.out.println("continue (c), report(r), auto(a), and retire(t)?input c/r/a/t ended with return.");
+                System.out.println("continue (c), report(r), auto(a), show all(s) and retire(t)?input c/r/a/t/s ended with return.");
                 try {
                     Thread.sleep(500);
                 }
@@ -74,10 +74,7 @@ public class Game {
                 }
                 InputStream inc = System.in;
                 if(player[i].isAuto()){
-                    if(player[i].rollDice() <= 3)
-                        data = "c\n" + "y\n";
-                    else
-                        data = "c\n" + "n\n";
+                    data = "c\n";
                     System.setIn(new ByteArrayInputStream(data.getBytes()));
                 }
                 Scanner sd = new Scanner(System.in);
@@ -100,16 +97,25 @@ public class Game {
                             else
                                 System.out.print(player[m].getName() + " : position" + player[m].getPostion() + "    No: " + player[m].getNo() + "\n");
                         }
-                        System.out.println("continue (c), report(r), auto(a), and retire(t)?input c/r/a/t ended with return.");
+                        System.out.println("continue (c), report(r), auto(a), show all(s) and retire(t)?input c/r/a/t/s ended with return.");
                         continue;
                     }
+
+                    else if(s1.equals("s") || s1.equals("S")){
+                        for(int m = 1; m<=number; m++){
+                            System.out.println(player[m].toString(gameMap));
+                        }
+                        System.out.println("continue (c), report(r), auto(a), show all(s) and retire(t)?input c/r/a/t/s ended with return.");
+                        continue;
+                    }
+
                     else if(s1.equals("A") || s1.equals("a")){
                         System.out.println(player[i].getName() + " change to auto mode.");
                         player[i].setAuto();
                         if(player[i].rollDice() <= 3)
-                            data = "c\n" + "y\n";
+                            data = "y\n";
                         else
-                            data = "c\n" + "n\n";
+                            data = "n\n";
                         System.setIn(new ByteArrayInputStream(data.getBytes()));
                         player[i].move();
                         gameMap.getBlockList()[player[i].getPostion() - 1].action(player[i], gameMap);
@@ -119,21 +125,30 @@ public class Game {
                     else if(s1.equals("C") || s1.equals("c")){
                         System.out.println(gameMap.printMap());
                         player[i].move();
+                        if(player[i].isAuto()){
+                            if(player[i].rollDice() <= 3){
+                                data = "y\n";
+                            }
+                            else {
+                                data = "n\n";
+                            }
+                            System.setIn(new ByteArrayInputStream(data.getBytes()));
+                        }
                         gameMap.getBlockList()[player[i].getPostion() - 1].action(player[i], gameMap);
                         System.setIn(inc);
                         break;
                     }
-                    else  System.out.println("continue (c), report(r), auto(a), and retire(t)?input c/r/a/t ended with return.");
+                    else  System.out.println("continue (c), report(r), auto(a), show all(s) and retire(t)?input c/r/a/t/s ended with return.");
                 }
             }
             turn++;
         }
         System.out.println("Game over");
-        findWinner(player);
+        findWinner(player, number);
         int m = -1;
         for(int i=1;i<=number;i++){
             if(player[i].getCash() > m) {
-                System.out.print(player[i].toString() + " WIN\n");
+                System.out.print(player[i].getName() + " WIN\n");
                 m = player[i].getCash();
             }
             else break;
