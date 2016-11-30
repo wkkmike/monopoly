@@ -76,7 +76,7 @@ public class Game {
                 if(!player[i].isRetire()) count++;
             }
             if(count <= 1) break;
-            System.out.println(turn + " turns" + "\n");
+            System.out.println("\n\n\n"+turn + " turns" + "\n");
             for(int i=1; i <= number; i++){
                 if(player[i].isRetire()) continue;
                 System.out.println("\n" + player[i].getName() + " turns.");
@@ -162,7 +162,7 @@ public class Game {
         findWinner(player, number);
         int m = -1;
         for(int i=1;i<=number;i++){
-            if(player[i].getCash() > m) {
+            if(player[i].getCash() >= m) {
                 System.out.print(player[i].getName() + " WIN\n");
                 m = player[i].getCash();
             }
