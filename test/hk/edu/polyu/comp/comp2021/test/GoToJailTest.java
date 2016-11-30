@@ -1,53 +1,39 @@
 package hk.edu.polyu.comp.comp2021.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+import hk.edu.polyu.comp.comp2021.monopoly.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
-import hk.edu.polyu.comp.comp2021.monopoly.*;
 /**
- * Created by michael on 2016/11/28.
+ * Created by 亦凡 on 2016/11/30.
  */
-public class GoTest {
-    Go testG;
+public class GoToJailTest {
+    GoToJail testG;
     character a;
-
     /**
      * set up
      * @throws Exception
      */
     @Before
-    public void setup()throws Exception{
-        testG = new Go(1,"Go");
+    public void setUp() throws Exception {
+        testG = new GoToJail(16,"Go");
         a = new character("wkk", 2000, 1);
     }
-
     /**
      * test conductor
      * @throws Exception
      */
     @Test
     public void action() throws Exception {
-        testG = new Go(1,"Go");
+        testG = new GoToJail(16,"Go");
     }
-    /**
-     * test whether can output the information
-     * @throws Exception
-     */
-    @Test
-    public void printInfo() throws Exception {
-        OutputStream op = System.out;
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        testG.printInfo();
-        assertTrue(outContent.toString().contains("You are in the Go block."));
-        System.setOut((PrintStream) op);
-    }
-
     /**
      * test action() method
      * @throws Exception
@@ -59,7 +45,23 @@ public class GoTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         testG.action(a, m);
-        assertTrue(outContent.toString().contains("You are in the Go block."));
+        assertTrue(outContent.toString().contains("You are in the GoToJail Block, you will be sent to the jail."));
+        System.setOut((PrintStream) op);
+
+        assertEquals(a.getPostion(), 6);
+
+    }
+    /**
+     * test whether can output the information
+     * @throws Exception
+     */
+    @Test
+    public void printInfo() throws Exception {
+        OutputStream op = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        testG.printInfo();
+        assertTrue(outContent.toString().contains("You are in the GoToJail Block, you will be sent to the jail."));
         System.setOut((PrintStream) op);
     }
 
@@ -69,7 +71,7 @@ public class GoTest {
      */
     @Test
     public void testToString() throws Exception {
-        assertEquals(testG.toString(), "Go:\n" + "Give $1500 to everyone pass through this block.\n");
+        assertEquals(testG.toString(), "GoToJail:\n" + "Send character land on this place to Jail.\n");
     }
 
     /**
@@ -78,7 +80,7 @@ public class GoTest {
      */
     @Test
     public void toIcon() throws Exception {
-        assertEquals(testG.toIcon(), "G\n");
+        assertEquals(testG.toIcon(), "=\n");
     }
 
 }
