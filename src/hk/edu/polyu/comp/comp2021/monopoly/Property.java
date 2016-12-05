@@ -1,5 +1,6 @@
 package hk.edu.polyu.comp.comp2021.monopoly;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class Property extends Block{
     private int rent;
     private int price;
+    private final int thisYear = 2016;
     private character owner  =  null;
     private final int num11 = 11;//left-up corner
     private final int num16 = 16;//right-up corner
@@ -42,15 +44,18 @@ public class Property extends Block{
                 System.out.print(this);
                 System.out.println("Would you want to buy this property? Input end by return.Y/N: ");
                 Scanner sc = new Scanner(System.in);
-                while (sc.hasNextLine()){
-                    String s1 = sc.nextLine();
-                    if(s1.equals("y") || s1.equals("Y")){
+                while (p.isAuto() || sc.hasNextLine()){
+                    String s1="N";
+                    if(!p.isAuto()) s1 = sc.nextLine();
+                    Random r = new Random();
+
+                    if(s1.equals("y") || s1.equals("Y") || (p.isAuto() && ((r.nextInt(thisYear) & 1 ) > 0))){
                         setOwner(p);
                         p.buyHouse(this);
                         System.out.println("You own this property. You have $" + p.getCash() + " now.");
                         break;
                     }
-                    else if(s1.equals("n") || s1.equals("N")){
+                    else if(s1.equals("n") || s1.equals("N") || (p.isAuto())){
                         System.out.println("You don't buy this property");
                         break;
                     }

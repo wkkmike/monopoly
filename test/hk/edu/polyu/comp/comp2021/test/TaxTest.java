@@ -1,5 +1,8 @@
 package hk.edu.polyu.comp.comp2021.test;
 
+import hk.edu.polyu.comp.comp2021.monopoly.Map;
+import hk.edu.polyu.comp.comp2021.monopoly.Tax;
+import hk.edu.polyu.comp.comp2021.monopoly.character;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,47 +11,31 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.*;
-import hk.edu.polyu.comp.comp2021.monopoly.*;
-/**
- * Created by michael on 2016/11/28.
- */
-public class GoTest {
-    private Go testG;
-    private character a;
 
+/**
+ * Created by 亦凡 on 2016/11/30.
+ */
+public class TaxTest {
+    private Tax testT;
+    private character a;
+    private final int initMoney = 2000;
     /**
      * set up
      * @throws Exception a
      */
     @Before
-    public void setup()throws Exception{
-        testG = new Go(1,"Go");
-        final int initMoney = 2000;
+    public void setUp() throws Exception {
+        testT = new Tax(4, "Income Tax");
         a = new character("wkk", initMoney, 1);
     }
-
     /**
      * test conductor
      * @throws Exception a
      */
     @Test
     public void action() throws Exception {
-        testG = new Go(1,"Go");
+        testT = new Tax(4, "Income Tax");
     }
-    /**
-     * test whether can output the information
-     * @throws Exception a
-     */
-    @Test
-    public void printInfo() throws Exception {
-        OutputStream op = System.out;
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        testG.printInfo();
-        assertTrue(outContent.toString().contains("You are in the Go block."));
-        System.setOut((PrintStream) op);
-    }
-
     /**
      * test action() method
      * @throws Exception a
@@ -59,9 +46,28 @@ public class GoTest {
         OutputStream op = System.out;
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        testG.action(a, m);
-        assertTrue(outContent.toString().contains("You are in the Go block."));
+        testT.action(a, m);
+        assertTrue(outContent.toString().contains("You are in  Income Tax block, you will be charged 10% income tax."));
+        assertTrue(outContent.toString().contains("You are charged $200. You have $1800 now."));
         System.setOut((PrintStream) op);
+        final int newMoney = 1800;
+        assertEquals(a.getCash(), newMoney);
+
+    }
+
+    /**
+     * test whether can output the information
+     * @throws Exception a
+     */
+    @Test
+    public void printInfo() throws Exception {
+        OutputStream op = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        testT.printInfo();
+        assertTrue(outContent.toString().contains("You are in  Income Tax block, you will be charged 10% income tax."));
+        System.setOut((PrintStream) op);
+
     }
 
     /**
@@ -70,7 +76,7 @@ public class GoTest {
      */
     @Test
     public void testToString() throws Exception {
-        assertEquals(testG.toString(), "Go:\n" + "Give $1500 to everyone pass through this block.\n");
+        assertEquals(testT.toString(), "Tax:\n" + "Charge character who lands on this block 10% of his money.\n");
     }
 
     /**
@@ -79,7 +85,6 @@ public class GoTest {
      */
     @Test
     public void toIcon() throws Exception {
-        assertEquals(testG.toIcon(), "G\n");
+        assertEquals(testT.toIcon(), "$ ");
     }
-
 }

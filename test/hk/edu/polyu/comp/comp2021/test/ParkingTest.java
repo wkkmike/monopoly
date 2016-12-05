@@ -1,5 +1,8 @@
 package hk.edu.polyu.comp.comp2021.test;
 
+import hk.edu.polyu.comp.comp2021.monopoly.Map;
+import hk.edu.polyu.comp.comp2021.monopoly.Parking;
+import hk.edu.polyu.comp.comp2021.monopoly.character;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,47 +11,33 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.*;
-import hk.edu.polyu.comp.comp2021.monopoly.*;
-/**
- * Created by michael on 2016/11/28.
- */
-public class GoTest {
-    private Go testG;
-    private character a;
 
+/**
+ * Created by 亦凡 on 2016/11/30.
+ */
+public class ParkingTest {
+    private Parking testP;
+    private character a;
+    private final int blockNum = 11;
     /**
      * set up
      * @throws Exception a
      */
     @Before
-    public void setup()throws Exception{
-        testG = new Go(1,"Go");
+    public void setUp() throws Exception {
+        testP = new Parking(blockNum, "FreeParking");
         final int initMoney = 2000;
         a = new character("wkk", initMoney, 1);
     }
-
     /**
      * test conductor
      * @throws Exception a
      */
     @Test
     public void action() throws Exception {
-        testG = new Go(1,"Go");
-    }
-    /**
-     * test whether can output the information
-     * @throws Exception a
-     */
-    @Test
-    public void printInfo() throws Exception {
-        OutputStream op = System.out;
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        testG.printInfo();
-        assertTrue(outContent.toString().contains("You are in the Go block."));
-        System.setOut((PrintStream) op);
-    }
+        testP = new Parking(blockNum, "FreeParking");
 
+    }
     /**
      * test action() method
      * @throws Exception a
@@ -59,8 +48,22 @@ public class GoTest {
         OutputStream op = System.out;
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        testG.action(a, m);
-        assertTrue(outContent.toString().contains("You are in the Go block."));
+        testP.action(a, m);
+        assertTrue(outContent.toString().contains("You are in the free parking block, no effect to you."));
+        System.setOut((PrintStream) op);
+    }
+
+    /**
+     * test whether can output the information
+     * @throws Exception a
+     */
+    @Test
+    public void printInfo() throws Exception {
+        OutputStream op = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        testP.printInfo();
+        assertTrue(outContent.toString().contains("You are in the free parking block, no effect to you."));
         System.setOut((PrintStream) op);
     }
 
@@ -70,7 +73,7 @@ public class GoTest {
      */
     @Test
     public void testToString() throws Exception {
-        assertEquals(testG.toString(), "Go:\n" + "Give $1500 to everyone pass through this block.\n");
+        assertEquals(testP.toString(), "FreeParking:\n" + "This block has no effect");
     }
 
     /**
@@ -79,7 +82,7 @@ public class GoTest {
      */
     @Test
     public void toIcon() throws Exception {
-        assertEquals(testG.toIcon(), "G\n");
+        assertEquals(testP.toIcon(), "F ");
     }
 
 }
