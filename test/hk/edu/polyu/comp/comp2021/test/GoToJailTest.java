@@ -1,6 +1,5 @@
 package hk.edu.polyu.comp.comp2021.test;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,28 +14,30 @@ import java.io.PrintStream;
  * Created by 亦凡 on 2016/11/30.
  */
 public class GoToJailTest {
-    GoToJail testG;
-    character a;
+    private GoToJail testG;
+    private character a;
+    private final int blockNum = 16;
     /**
      * set up
-     * @throws Exception
+     * @throws Exception a
      */
     @Before
     public void setUp() throws Exception {
-        testG = new GoToJail(16,"Go");
-        a = new character("wkk", 2000, 1);
+        testG = new GoToJail(blockNum,"Go");
+        final int initMoney = 2000;
+        a = new character("wkk", initMoney, 1);
     }
     /**
      * test conductor
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void action() throws Exception {
-        testG = new GoToJail(16,"Go");
+        testG = new GoToJail(blockNum,"Go");
     }
     /**
      * test action() method
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testAction() throws Exception {
@@ -53,7 +54,7 @@ public class GoToJailTest {
     }
     /**
      * test whether can output the information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void printInfo() throws Exception {
@@ -67,7 +68,7 @@ public class GoToJailTest {
 
     /**
      * test whether toString() can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testToString() throws Exception {
@@ -76,7 +77,7 @@ public class GoToJailTest {
 
     /**
      * test whether toIcon() method can can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void toIcon() throws Exception {

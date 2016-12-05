@@ -16,20 +16,21 @@ import static org.junit.Assert.*;
  * Created by 亦凡 on 2016/11/30.
  */
 public class TaxTest {
-    Tax testT;
-    character a;
+    private Tax testT;
+    private character a;
+    private final int initMoney = 2000;
     /**
      * set up
-     * @throws Exception
+     * @throws Exception a
      */
     @Before
     public void setUp() throws Exception {
         testT = new Tax(4, "Income Tax");
-        a = new character("wkk", 2000, 1);
+        a = new character("wkk", initMoney, 1);
     }
     /**
      * test conductor
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void action() throws Exception {
@@ -37,7 +38,7 @@ public class TaxTest {
     }
     /**
      * test action() method
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testAction() throws Exception {
@@ -49,14 +50,14 @@ public class TaxTest {
         assertTrue(outContent.toString().contains("You are in  Income Tax block, you will be charged 10% income tax."));
         assertTrue(outContent.toString().contains("You are charged $200. You have $1800 now."));
         System.setOut((PrintStream) op);
-
-        assertEquals(a.getCash(), 1800);
+        final int newMoney = 1800;
+        assertEquals(a.getCash(), newMoney);
 
     }
 
     /**
      * test whether can output the information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void printInfo() throws Exception {
@@ -71,7 +72,7 @@ public class TaxTest {
 
     /**
      * test whether toString() can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testToString() throws Exception {
@@ -80,7 +81,7 @@ public class TaxTest {
 
     /**
      * test whether toIcon() method can can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void toIcon() throws Exception {

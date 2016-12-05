@@ -41,7 +41,7 @@ public class Block {
     }
 
     /**
-     * dismiss the owner of the block
+     * dismiss the owner of the block col
      * @param p character of this block
      */
     public void dismissOwner(character p){

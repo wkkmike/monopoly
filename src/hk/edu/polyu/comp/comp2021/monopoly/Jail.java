@@ -1,12 +1,13 @@
 package hk.edu.polyu.comp.comp2021.monopoly;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
  * Created by michael on 2016/11/24.
  */
 public class Jail extends Block {
-
+    private final int thisYear = 2016;
     private final int fine = 50;
     /**
      * Creator
@@ -58,14 +59,16 @@ public class Jail extends Block {
             else {
                 System.out.println("Would you want to pay $50 to get out of jail? Input end by return.Y/N: ");
                 Scanner sc = new Scanner(System.in);
-                while (sc.hasNextLine()) {
-                    String s1 = sc.nextLine();
-                    if (s1.equals("y") || s1.equals("Y")) {
+                while (p.isAuto() || sc.hasNextLine()) {
+                    String s1 = "N";
+                    if(!p.isAuto())s1 = sc.nextLine();
+                    Random ra = new Random();
+                    if (s1.equals("y") || s1.equals("Y") || (p.isAuto() && (ra.nextInt(thisYear) & 1) >0)) {
                         p.setCash(-fine);
                         p.outJail();
                         System.out.println("You pay $50 fine. You leave jail. You have $" + p.getCash() + " now.");
                         break;
-                    } else if (s1.equals("n") || s1.equals("N")) {
+                    } else if (s1.equals("n") || s1.equals("N") || p.isAuto()) {
                         int a = p.rollDice();
                         int b = p.rollDice();
                         System.out.println("Your first roll get " + a + ". Your second roll get " + b + ".");

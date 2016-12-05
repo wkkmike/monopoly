@@ -1,6 +1,5 @@
 package hk.edu.polyu.comp.comp2021.test;
 
-import hk.edu.polyu.comp.comp2021.monopoly.GoToJail;
 import hk.edu.polyu.comp.comp2021.monopoly.Map;
 import hk.edu.polyu.comp.comp2021.monopoly.Parking;
 import hk.edu.polyu.comp.comp2021.monopoly.character;
@@ -17,29 +16,31 @@ import static org.junit.Assert.*;
  * Created by 亦凡 on 2016/11/30.
  */
 public class ParkingTest {
-    Parking testP;
-    character a;
+    private Parking testP;
+    private character a;
+    private final int blockNum = 11;
     /**
      * set up
-     * @throws Exception
+     * @throws Exception a
      */
     @Before
     public void setUp() throws Exception {
-        testP = new Parking(11, "FreeParking");
-        a = new character("wkk", 2000, 1);
+        testP = new Parking(blockNum, "FreeParking");
+        final int initMoney = 2000;
+        a = new character("wkk", initMoney, 1);
     }
     /**
      * test conductor
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void action() throws Exception {
-        testP = new Parking(11, "FreeParking");
+        testP = new Parking(blockNum, "FreeParking");
 
     }
     /**
      * test action() method
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testAction() throws Exception {
@@ -54,7 +55,7 @@ public class ParkingTest {
 
     /**
      * test whether can output the information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void printInfo() throws Exception {
@@ -68,7 +69,7 @@ public class ParkingTest {
 
     /**
      * test whether toString() can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testToString() throws Exception {
@@ -77,7 +78,7 @@ public class ParkingTest {
 
     /**
      * test whether toIcon() method can can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void toIcon() throws Exception {

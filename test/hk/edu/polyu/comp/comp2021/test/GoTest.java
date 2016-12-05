@@ -13,22 +13,23 @@ import hk.edu.polyu.comp.comp2021.monopoly.*;
  * Created by michael on 2016/11/28.
  */
 public class GoTest {
-    Go testG;
-    character a;
+    private Go testG;
+    private character a;
 
     /**
      * set up
-     * @throws Exception
+     * @throws Exception a
      */
     @Before
     public void setup()throws Exception{
         testG = new Go(1,"Go");
-        a = new character("wkk", 2000, 1);
+        final int initMoney = 2000;
+        a = new character("wkk", initMoney, 1);
     }
 
     /**
      * test conductor
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void action() throws Exception {
@@ -36,7 +37,7 @@ public class GoTest {
     }
     /**
      * test whether can output the information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void printInfo() throws Exception {
@@ -50,7 +51,7 @@ public class GoTest {
 
     /**
      * test action() method
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testAction() throws Exception {
@@ -65,7 +66,7 @@ public class GoTest {
 
     /**
      * test whether toString() can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void testToString() throws Exception {
@@ -74,7 +75,7 @@ public class GoTest {
 
     /**
      * test whether toIcon() method can can output right information
-     * @throws Exception
+     * @throws Exception a
      */
     @Test
     public void toIcon() throws Exception {

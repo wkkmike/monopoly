@@ -2,7 +2,6 @@ package hk.edu.polyu.comp.comp2021.test;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,47 +14,76 @@ import hk.edu.polyu.comp.comp2021.monopoly.*;
  * Created by michael on 2016/11/28.
  */
 public class PropertyTest {
-    Property testP;
-    character a;
+    private Property testP;
+    private character a;
+    private final int initMoney = 1500;
+    private final int initRent = 60;
+    /**
+     * test
+     *
+     */
     @Before
     public void setUp(){
-        testP = new Property(1500, 60, 6, "WangJing");
-        a = new character("wkk", 2000, 2);
+        testP = new Property(initMoney, initRent, 6, "WangJing");
+        final int initMoney = 2000;
+        a = new character("wkk", initMoney, 2);
     }
-
+    /**
+     * test
+     *
+     */
     @After
     public void clear(){
         if(testP.getOwner() != null)
             testP.dismissOwner(a);
     }
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void action() throws Exception {
-        testP = new Property(1500, 60, 6, "WangJing");
+        testP = new Property(initMoney, initRent, 6, "WangJing");
     }
-
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void getPrice() throws Exception {
-        assertEquals(1500, testP.getPrice());
+        assertEquals(initMoney, testP.getPrice());
     }
-
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void getRent() throws Exception {
-        assertEquals(60, testP.getRent());
+        assertEquals(initRent, testP.getRent());
     }
-
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void setOwner() throws Exception {
         testP.setOwner(a);
         assertEquals(testP.getOwner(), a);
     }
-
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void dismissOwner() throws Exception {
         testP.setOwner(a);
         testP.dismissOwner(a);
         assertNull(testP.getOwner());
     }
-
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void testAction() throws Exception{
         Map m = new Map();
@@ -64,7 +92,8 @@ public class PropertyTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         testP.action(a, m);
         assertEquals(testP.getOwner(), a);
-        assertEquals(a.getCash(), 500);
+        final int newCash = 500;
+        assertEquals(a.getCash(), newCash);
 
         //test for land in himself property
         OutputStream op = System.out;
@@ -73,17 +102,20 @@ public class PropertyTest {
         testP.action(a, m);
         assertTrue(outContent.toString().contains("This is you property."));
         System.setOut((PrintStream) op);
-
+        final int initPM = 4000;
         //test for pay rent when the person land in have enough money
-        character d = new character("pq", 4000, 1);
+        character d = new character("pq", initPM, 1);
         testP.action(d, m);
-        assertEquals(d.getCash(), 3940);
-        assertEquals(a.getCash(), 560);
-        d.setCash(-3900);
+        assertEquals(d.getCash(), initPM - initRent);
+        final int newCash2 = 560;
+        assertEquals(a.getCash(), newCash2);
+        final int reduceMoney = -3900;
+        d.setCash(reduceMoney);
 
         //test for pay rent when the person land in without enough money
         testP.action(d, m);
-        assertEquals(a.getCash(), 600);
+        final int newCash3 = 600;
+        assertEquals(a.getCash(), newCash3);
         assertTrue(d.isRetire());
         testP.dismissOwner(a);
 
@@ -92,14 +124,15 @@ public class PropertyTest {
         System.setOut(new PrintStream(outContent1));
         testP.action(a, m);
         assertTrue(outContent1.toString().contains("You don't have enough money to buy this property."));
-        assertEquals(a.getCash(), 600);
+        assertEquals(a.getCash(), newCash3);
         assertNull(testP.getOwner());
         System.setOut((PrintStream) op);
 
         //test for don't buy property when there is no owner.
         data = "n\n";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        character e = new character("kk", 3000, 3);
+        final int initPM2 = 3000;
+        character e = new character("kk", initPM2, 3);
         ByteArrayOutputStream outContent4 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent4));
         testP.action(e,m);
@@ -117,7 +150,10 @@ public class PropertyTest {
         assertEquals(testP.getOwner(), e);
         System.setOut((PrintStream) op);
     }
-
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void testtoString() throws Exception {
         StringBuilder sb = new StringBuilder();
@@ -138,13 +174,19 @@ public class PropertyTest {
         s = sb.toString();
         assertEquals(testP.toString(), s);
     }
-
+    /**
+     * test
+     * @throws Exception a
+     */
     @Test
     public void toIcon() throws Exception {
-        Property test1 = new Property(1500, 60, 3, "HK");
-        Property test2 = new Property(1500, 60, 8, "hk");
-        Property test3 = new Property(1500, 60, 12, "hk");
-        Property test4 = new Property(1400, 23, 20, "hk");
+        Property test1 = new Property(initMoney, initRent, 3, "HK");
+        Property test2 = new Property(initMoney, initRent, 8, "hk");
+        final int B12 = 12;
+        final int B20 = 20;
+        final int R23 = 23;
+        Property test3 = new Property(initMoney, initRent, B12, "hk");
+        Property test4 = new Property(initMoney - 100, R23, B20, "hk");
         Property test[] = new Property[]{test1, test2, test3, test4};
         String s1 = "0 ";
         String s2 = "0         ";

@@ -16,6 +16,7 @@ public class character {
     private int houseAmount;
     private final int initMoney = 1500;
     private final int totalBlock = 21;
+    private boolean auto= false;
     /**
      * creator
      */
@@ -26,6 +27,16 @@ public class character {
         position=1;
         jail_round=0;
         houseAmount = 0;
+    }
+
+    /**
+     *
+     * @param name
+     * set the name with the parameter.
+     */
+
+    public void setName (String name){
+        this.name=name;
     }
 
     /**
@@ -81,7 +92,7 @@ public class character {
      * Set the character to auto mode
      */
     public void setAuto(){
-        state = 2;
+        auto = true;
     }
 
     /**
@@ -89,7 +100,7 @@ public class character {
      * @return true for auto mode.
      */
     public boolean isAuto(){
-        return state == 2;
+        return auto;
     }
 
     /**
@@ -133,13 +144,15 @@ public class character {
         if(cash + money >= 0) cash += money;
     }
 
+
+
     /**
      * Simulate roll dice
      * @return a random number between 1-6
      */
     public int rollDice(){
         Random random = new Random();
-        int step = random.nextInt(6)%6+1;
+        int step = random.nextInt(4)%4+1;
         return step;
     }
 
